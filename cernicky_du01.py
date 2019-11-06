@@ -1,6 +1,6 @@
 from math import sqrt,sin,cos,tan,pi,log
-#   Poloměr země
-R = 6371110000
+#   Poloměr země v cm
+R = 637111000
 v = 0
 u = 0
 Rovnobezky = []
@@ -19,62 +19,62 @@ R = input("Zadej poloměr země v km: ")
 while R == "":
     R = input("Zadej znovu poloměr země v km: ")
 R = float(R)
-R = R * 1000000
+R = R * 100000
 if R == 0:
-    R = 6371110000
+    R = 637111000
 z = ""
 #   Funkce pro výpočet k jednotlivým zobrazením
 def Lam(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
-        xm = x / meritko
-        if xm > 1000 or xm < -1000:
+        xm = round(x / meritko,1)
+        if xm > 100 or xm < -100:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = R * sin(u * pi / 180)
-        ym = y / meritko
-        if ym > 1000 or ym < -1000:
+        ym = round(y / meritko,1)
+        if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
 def Mar(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
-        xm = x / meritko
-        if xm > 1000 or xm < -1000:
+        xm = round(x / meritko,1)
+        if xm > 100 or xm < -100:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = R * (u * pi / 180)
-        ym = y / meritko
-        if ym > 1000 or ym < -1000:
+        ym = round(y / meritko,1)
+        if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
 def Bra(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
-        xm = x / meritko
-        if xm > 1000 or xm < -1000:
+        xm = round(x / meritko,1)
+        if xm > 100 or xm < -100:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = 2 * R * tan((u*pi/180)/2)
-        ym = y / meritko
-        if ym > 1000 or ym < -1000:
+        ym = round(y / meritko,1)
+        if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
 def Mer(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
-        xm = round(x / meritko,2)
-        if xm > 1000 or xm < -1000:
+        xm = round(x / meritko,1)
+        if xm > 100 or xm < -100:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         u = abs(u * pi/180)
         y = R * log(tan((u/2) + pi/4))
         ym = round(y / meritko,1)
-        if ym > 1000 or ym < -1000:
+        if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
 
