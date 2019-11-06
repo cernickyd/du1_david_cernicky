@@ -33,39 +33,39 @@ def Mar(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = x / meritko
-        if xm > 1000 and xm < 1000:
+        if xm > 1000 or xm < -1000:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = R * (u * pi / 180)
         ym = y / meritko
-        if ym > 1000 and ym < 1000:
+        if ym > 1000 or ym < -1000:
             ym = "-"
         Rovnobezky.append(ym)
 def Bra(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = x / meritko
-        if xm > 1000 and xm < 1000:
+        if xm > 1000 or xm < -1000:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = 2 * R * tan((u*pi/180)/2)
         ym = y / meritko
-        if ym > 1000 and ym < 1000:
+        if ym > 1000 or ym < -1000:
             ym = "-"
         Rovnobezky.append(ym)
 def Mer(R):
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = x / meritko
-        if xm > 1000 and xm < 1000:
+        if xm > 1000 or xm < -1000:
             xm = "-"
         Poledniky.append(xm)
     for u in range(-90, 91, skok):
         y = R * log(tan(2/((90-u)*pi/180)))
         ym = y / meritko
-        if ym > 1000 and ym < 1000:
+        if ym > 1000 or ym < -1000:
             ym = "-"
         Rovnobezky.append(ym)
 
