@@ -7,14 +7,23 @@ Rovnobezky = []
 Poledniky = []
 
 #   Uživatelské vstupy
-meritko = int(input("Zadej celočíselné měřítko: "))
-skok = int(input("Po kolika stupních chceš měřit? Zadej celočíselné číslo: "))
-R = float(input("Zadej poloměr země v km: "))
+meritko = input("Jaké chceš měřítko? Zadej celočíselné měřítko: ")
+while meritko == "":
+    meritko = input("Tak znovu... Jaké chceš měřítko? Zadej celočíselné měřítko: ")
+meritko = int(meritko)
+skok = input("Po kolika stupních chceš měřit? Zadej celočíselné číslo: ")
+while skok == "":
+    skok = input("Tak znovu... Po kolika stupních chceš měřit? Zadej celočíselné číslo: ")
+skok = int(skok)
+R = input("Zadej poloměr země v km: ")
+while R == "":
+    R = input("Zadej znovu poloměr země v km: ")
+R = float(R)
 R = R * 1000000
 if R == 0:
     R = 6371110000
 z = ""
-
+print(R,skok,meritko)
 #   Funkce pro výpočet k jednotlivým zobrazením
 def Lam(R):
     for v in range(-180, 181, skok):
