@@ -1,5 +1,7 @@
+#   Import potřebných funkcí pro vypočítání jednotlivých zobrazení
 from math import sqrt,sin,cos,tan,pi,log
-#   Poloměr země v cm
+
+#   Poloměr země v cm, tvorba proměnných a seznamů
 R = 637111000
 v = 0
 u = 0
@@ -8,15 +10,22 @@ Rovnobezky = []
 Poledniky = []
 
 #   Uživatelské vstupy, ošetřeno o prázdné hodnoty
+#   Zobrazení
 Z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+
+#   Měřítko - ideálně něco mezi 10 - 50M
 meritko = input("Jaké chceš měřítko? Zadej přirozené číslo měřítka: ")
 while meritko == "":
     meritko = input("Tak znovu... Jaké chceš měřítko? Zadej přirozené číslo měřítka: ")
 meritko = int(meritko)
+
+#   Přidán 'skok' - po kolika stupních chci měřit
 skok = input("Po kolika stupních chceš měřit? Zadej přirozené číslo: ")
 while skok == "":
     skok = input("Tak znovu... Po kolika stupních chceš měřit? Zadej přirozené číslo: ")
 skok = int(skok)
+
+#   Poloměr země je volitelný - pokud je roven nule je mu přiřazena defaultní hodnota
 R = input("Zadej poloměr země v km: ")
 while R == "":
     R = input("Zadej znovu poloměr země v km: ")
@@ -24,6 +33,7 @@ R = float(R)
 R = R * 100000
 if R == 0:
     R = 637111000
+
 #   Funkce pro výpočet k jednotlivým zobrazením
 def Lam(R):
     for v in range(-180, 181, skok):
@@ -96,9 +106,12 @@ while z != "L" and z != "A" and z != "B" and z != "M":
         print("Mercatorovo zobrazení")
     else:
         z = input("Neplatný vstup! Pouze:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+
 print(f"Měřítko je 1:{meritko}\nMěříš po {skok}°\nPoloměr země je {R} mm")
 print(f"Rovnoběžky (cm): {Rovnobezky}")
 print(f"Poledníky (cm): {Poledniky}")
+
+#   Kód pro vypisování jednotlivých hodnot 'u' a 'v'
 u = ""
 v = ""
 while u != 0 or v !=0:
@@ -132,6 +145,6 @@ while u != 0 or v !=0:
     if u == 0 and v == 0:
         print("Konec!")
     else:
-        print(f"Zeměpisná šířka je na mapě od středu vzdálena {ym} cm")
-        print(f"Zeměpisná délka je na mapě od středu vzdálena {xm} cm")
+        print(f"Zeměpisná šířka {u}° je na mapě od středu vzdálena {ym} cm")
+        print(f"Zeměpisná délka {v}° je na mapě od středu vzdálena {xm} cm")
         print("Pokud už nechceš pokračovat zadej 'u' i 'v' rovno 0")
