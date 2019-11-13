@@ -8,11 +8,13 @@ u = 0
 z = ""
 Rovnobezky = []
 Poledniky = []
-
 #   Uživatelské vstupy, ošetřeno o prázdné hodnoty
 #   Zobrazení
-Z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
-
+I = 0
+while I != 1:
+    Z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+    if Z == "L" or Z == "A" or Z == "B" or Z == "M":
+        I = 1
 #   Měřítko - ideálně něco mezi 10 - 50M
 meritko = input("Jaké chceš měřítko? Zadej přirozené číslo měřítka: ")
 while meritko == "":
