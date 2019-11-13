@@ -147,4 +147,4 @@ while u != 0 or v !=0:
     else:
         print(f"Zeměpisná šířka {u}° je na mapě od středu vzdálena {ym} cm")
         print(f"Zeměpisná délka {v}° je na mapě od středu vzdálena {xm} cm")
-        print("Pokud už nechceš pokračovat zadej 'u' i 'v' rovno 0")
+        print("Pokud už nechceš pokračovat zadej zem. šířku i délku rovno 0")
