@@ -2,42 +2,40 @@
 from math import sqrt,sin,cos,tan,pi,log
 
 #   Poloměr země v cm, tvorba proměnných a seznamů
-R = 637111000
-v = 0
-u = 0
-z = ""
+v = 0 # zeměpisná délka
+u = 0 # zeměpisná šířka
+z = "" # vstup zobrazení
 Rovnobezky = []
 Poledniky = []
+
 #   Uživatelské vstupy, ošetřeno o prázdné hodnoty
 #   Zobrazení
-I = 0
-while I != 1:
-    Z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
-    if Z == "L" or Z == "A" or Z == "B" or Z == "M":
-        I = 1
+z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+while z != "L" and z != "A" and z != "B" and z != "M":
+    z = input("Zadej zkratku jednoho ze zobrazení:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+
 #   Měřítko - ideálně něco mezi 10 - 50M
-meritko = input("Jaké chceš měřítko? Zadej přirozené číslo měřítka: ")
-while meritko == "":
-    meritko = input("Tak znovu... Jaké chceš měřítko? Zadej přirozené číslo měřítka: ")
-meritko = int(meritko)
+meritko = int(input("Jaké chceš měřítko? Zadej přirozené číslo měřítka: "))
+while meritko <= 0:
+    meritko = int(input("Tak znovu... Jaké chceš měřítko? Zadej přirozené číslo měřítka: "))
 
 #   Přidán 'skok' - po kolika stupních chci měřit
-skok = input("Po kolika stupních chceš měřit? Zadej přirozené číslo: ")
-while skok == "":
-    skok = input("Tak znovu... Po kolika stupních chceš měřit? Zadej přirozené číslo: ")
-skok = int(skok)
+skok = int(input("Po kolika stupních chceš měřit? Zadej přirozené číslo: "))
+while skok <= 0:
+    skok = int(input("Tak znovu... Po kolika stupních chceš měřit? Zadej přirozené číslo: "))
 
 #   Poloměr země je volitelný - pokud je roven nule je mu přiřazena defaultní hodnota
-R = input("Zadej poloměr země v km: ")
-while R == "":
-    R = input("Zadej znovu poloměr země v km: ")
-R = float(R)
+R = float(input("Zadej poloměr země v km: "))
+while R < 0:
+    R = float(input("Zadej znovu poloměr země v km: "))
 R = R * 100000
 if R == 0:
     R = 637111000
 
 #   Funkce pro výpočet k jednotlivým zobrazením
-def Lam(R):
+def lam(R):
+    v = 0  # zeměpisná délka
+    u = 0  # zeměpisná šířka
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = round(x / meritko,1)
@@ -50,7 +48,9 @@ def Lam(R):
         if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
-def Mar(R):
+def mar(R):
+    v = 0  # zeměpisná délka
+    u = 0  # zeměpisná šířka
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = round(x / meritko,1)
@@ -63,7 +63,9 @@ def Mar(R):
         if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
-def Bra(R):
+def bra(R):
+    v = 0  # zeměpisná délka
+    u = 0  # zeměpisná šířka
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = round(x / meritko,1)
@@ -76,7 +78,9 @@ def Bra(R):
         if ym > 100 or ym < -100:
             ym = "-"
         Rovnobezky.append(ym)
-def Mer(R):
+def mer(R):
+    v = 0  # zeměpisná délka
+    u = 0  # zeměpisná šířka
     for v in range(-180, 181, skok):
         x = R * (v * pi / 180)
         xm = round(x / meritko,1)
@@ -91,23 +95,21 @@ def Mer(R):
             ym = "-"
         Rovnobezky.append(ym)
 
-#   Cyklus vypisování hodnot
-while z != "L" and z != "A" and z != "B" and z != "M":
-    z = Z
-    if z == "L":
-        Lam(R)
-        print("Lambertovo zobrazení")
-    elif z == "A":
-        Mar(R)
-        print("Marinovo zobrazení")
-    elif z == "B":
-        Bra(R)
-        print("Braunovo zobrazení")
-    elif z == "M":
-        Mer(R)
-        print("Mercatorovo zobrazení")
-    else:
-        z = input("Neplatný vstup! Pouze:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
+#   Vypisování hodnot
+if z == "L":
+    lam(R)
+    print("Lambertovo zobrazení")
+elif z == "A":
+    mar(R)
+    print("Marinovo zobrazení")
+elif z == "B":
+    bra(R)
+    print("Braunovo zobrazení")
+elif z == "M":
+    mer(R)
+    print("Mercatorovo zobrazení")
+else:
+    z = input("Neplatný vstup! Pouze:\nL - Lambertovo zobrazení \nA - Marinovo zobrazení\nB - Braunovo zobrazení\nM - Mercatorovo zobrazení\nKteré?: ")
 
 print(f"Měřítko je 1:{meritko}\nMěříš po {skok}°\nPoloměr země je {R} mm")
 print(f"Rovnoběžky (cm): {Rovnobezky}")
